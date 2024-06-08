@@ -5,8 +5,13 @@
   text-align: center;
 }
 
+.thisMonth {
+  font-size: 10rem;
+  margin-bottom: 1rem;
+  
+}
 .cal_table {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
 }
