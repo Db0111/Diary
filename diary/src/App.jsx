@@ -1,20 +1,14 @@
 // import { useState } from 'react'
 // import styled from 'styled-components'
 import './App.css'
-import { Calendar } from './Calendar/CalendarFunction'
-import {CalendarPage} from './Calendar/calendarView'
-import { Daycell } from './daycell'
+import {CalendarPage} from './Calendar/CalendarPage.jsx'
 
 
 function App() {
   return (
     <>
+      {/* TODO router 라는 개념을 적용해야함 */}
       <CalendarPage/>
-      <Daycell/>
-      <prevMonth/>
-      <gotoToday/>
-      <nextMonth/>
-      <Calendar/>
     </>
     
   )
