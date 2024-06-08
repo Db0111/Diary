@@ -1,9 +1,15 @@
 import styled from "styled-components"
 
 export function Daycell() {
-    const Week = styled.div`
+    const Weeks = styled.div`
         display: flex;
         flex-direction: row;
+        margin: auto;
+        justify-content: space-between;
+    `
+    const Week = styled.div`
+        display: flex;
+        flex-direction: column;
         margin: auto;
         justify-content: space-between;
     `
@@ -63,7 +69,7 @@ export function Daycell() {
 
     return (
         <div className="cal_table">
-            <Week>
+            <Weeks>
                 <div className="Sun">Sun</div>
                 <div className="Mon">Mon</div>
                 <div className="Tue">Tue</div>
@@ -71,13 +77,13 @@ export function Daycell() {
                 <div className="Thu">Thu</div>
                 <div className="Fri">Fri</div>
                 <div className="Sat">Sat</div>
-            </Week>
+            </Weeks>
             <Week>
                 {/* 1주차부터 날짜 그리기 */}
                 {/* weeks 배열에 있는 요소들을 순회하며 날짜를 그린다. */}
                 {weeks.map((dateList, weekIndex) => (
                 // 한 주를 나타내는 Week 컴포넌트
-                <Week key={weekIndex}>
+                <Weeks key={weekIndex}>
                     {/* dateList 배열에 있는 요소(날짜 데이터)를 순회하며 날짜를 그린다. */}
                     {dateList.map((date, dateIndex) => (
                         // date가 0이면 빈칸을, 0이 아니면 날짜를 표시한다.
@@ -87,7 +93,7 @@ export function Daycell() {
                             {date !== 0 ? date : ""}
                         </div>
                     ))}
-                </Week>
+                </Weeks>
             ))}
             </Week>
             
