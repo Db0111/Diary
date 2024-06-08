@@ -11,7 +11,7 @@ export function CalendarPage() {
     
         <div className="container">
             <div className="title">
-                <div className="today_Date"></div>
+                <Calendar year={year} month={month + 1} className = "cal_table"></Calendar>
                 <div className="button-container">
                     {/* 이전 달로 돌아가는 버튼 */}
                     <button onClick={() => {
@@ -41,10 +41,11 @@ export function CalendarPage() {
 
             </div>
 
-            <Calendar year={year} month={month + 1} className = "cal_table"></Calendar>
+            
         </div>
     )
 }
+
 
 
 {/* <CalendarPage>
@@ -72,6 +73,6 @@ export function CalendarPage() {
 //
 
 function Calendar(props) {
-    // props.month 을 그릴거야.
+//     // props.month 을 그릴거야.
     return (<div>{props.year}년 {props.month}월</div>);
 }
