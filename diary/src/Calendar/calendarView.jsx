@@ -11,7 +11,7 @@ export function CalendarPage() {
     
         <div className="container">
             <div className="title">
-                <div className="today_Date">{year}-{month + 1}</div>
+                <div className="today_Date"></div>
                 <div className="button-container">
                     {/* 이전 달로 돌아가는 버튼 */}
                     <button onClick={() => {
@@ -23,6 +23,12 @@ export function CalendarPage() {
                         }
                         
                     }}>이전 달</button>
+                    {/* 오늘 날짜로 돌아오는 버튼 */}
+                    <button onClick={() => {
+                        setYear(new Date().getFullYear());
+                        setMonth(new Date().getMonth());
+
+                    }}>Today</button>
                     <button onClick={() => {
                         if (month == 11) {
                             setYear(year + 1);
