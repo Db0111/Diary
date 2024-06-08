@@ -1,4 +1,8 @@
 import { useState } from 'react';
+import { prevMonth, gotoToday, nextMonth, Calendar } from './CalendarFunction';
+
+
+
 
 // calendar 앱 함수 만들어 html 태그들 넣기
 export function CalendarPage() {
@@ -7,36 +11,32 @@ export function CalendarPage() {
     const [year, setYear] = useState(new Date().getFullYear());
     const [month, setMonth] = useState(new Date().getMonth());
 
+    
+    const handlePrevMonth = () => {
+        prevMonth(year, setYear, month, setMonth);
+    };
+    const handleToday = () => {
+        gotoToday(setYear, setMonth);
+    };
+
+    const handleNextMonth = () => {
+        nextMonth(year, setYear, month, setMonth);
+    };
+
+
+
     return (
     
         <div className="container">
             <div className="title">
                 <Calendar year={year} month={month + 1} className = "thisMonth"></Calendar>
                 <div className="button-container">
-                    {/* 이전 달로 돌아가는 버튼 */}
-                    <button onClick={() => {
-                        if (month == 0) {
-                            setYear(year - 1);
-                            setMonth(11);
-                        } else {
-                            setMonth(month - 1);
-                        }
-                        
-                    }}>이전 달</button>
+                    {/* 이전 달로 넘어가는 버튼 */}
+                    <button onClick={handlePrevMonth}>이전 달</button>
                     {/* 오늘 날짜로 돌아오는 버튼 */}
-                    <button onClick={() => {
-                        setYear(new Date().getFullYear());
-                        setMonth(new Date().getMonth());
-
-                    }}>Today</button>
-                    <button onClick={() => {
-                        if (month == 11) {
-                            setYear(year + 1);
-                            setMonth(0);
-                        } else {
-                            setMonth(month + 1);
-                        }    
-                    }}>다음 달</button>
+                    <button onClick={handleToday}>Today</button>
+                    {/* 다음 달로 넘어가는 버튼 */}
+                    <button onClick={handleNextMonth}>다음 달</button>
                 </div>
 
             </div>
@@ -47,32 +47,3 @@ export function CalendarPage() {
 }
 
 
-
-{/* <CalendarPage>
-    year = 2024
-    month = 12 
-
-    function clickPrevMonth() {
-
-    }
-
-    function clickNextMonth() {
-
-    }
-
-    <MonthController>
-        <MonthChangeButton onClick={clickPrevMonth}>전달</MonthChangeButton>
-        <Month>{year}{month}</Month>
-        <MonthChangeButton onClick={clickNextMonth}>다음달</MonthChangeButton>
-    </MonthController>
-    
-    <Calendar year={year} month={month}></Calendar>
-</CalendarPage> */}
-
-
-//
-
-function Calendar(props) {
-//     // props.month 을 그릴거야.
-    return (<div className = 'thisMonth'>{props.year}년 {props.month}월</div>);
-}
