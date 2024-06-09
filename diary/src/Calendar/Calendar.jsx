@@ -21,6 +21,7 @@ export function Calendar(props) {
     /**
      * 주어진 년 월에 해당하는 캘린더 배열을 만드는 함수
      */
+
     const getWeeks = (year, month) => {
         let weeks = []
         let dateList = []
@@ -74,7 +75,7 @@ export function Calendar(props) {
     }
     const navigate = useNavigate();
     const handleOneDayClicked = () => {
-        navigate("/diary/edit");
+        navigate(`/diary/edit?date=${props.year}년 ${props.month + 1}월 ${props.date}일`);
     }
         // if (date !== 0) {
         //     alert(`${props.year}년 ${props.year + 1}월 ${date}일 로 이동하는 기능을 구현중입니다.`)
