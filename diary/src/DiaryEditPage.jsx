@@ -15,10 +15,16 @@ export function DiaryEdit() {
         <div className='DiaryContainer'>
             {/* 누른 날짜 받아와서 상단에 띄우기 */}
             {date && <div>{date}</div>}
+            <div className="DiaryInputContainer">
+                <textarea className="DiaryInput"></textarea>
+            </div>
 
             <div className="button-container">
                     {/* 달력으로 돌아가는 버튼*/}
                 <button onClick={ReturnCalendar}>돌아가기</button>
+                <button>저장하기</button>
+                <button>수정하기</button>
+                <button>삭제하기</button>
                    
             </div>
 
