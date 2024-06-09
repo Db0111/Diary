@@ -17,6 +17,7 @@
 }
 .DiaryInput{
   display: flex;
-  width: 30rem;
+  width: 40rem;
   height: 30rem;
+  resize: none;
 }
