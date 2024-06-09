@@ -18,7 +18,7 @@ export function DiaryEdit() {
 
             <div className="button-container">
                     {/* 달력으로 돌아가는 버튼*/}
-                    <button onClick={ReturnCalendar}>돌아가기</button>
+                <button onClick={ReturnCalendar}>돌아가기</button>
                    
             </div>
 

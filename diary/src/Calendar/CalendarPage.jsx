@@ -12,6 +12,7 @@ export function CalendarPage() {
     const [year, setYear] = useState(new Date().getFullYear());
     const [month, setMonth] = useState(new Date().getMonth());
 
+
     const handlePrevMonthClicked = () => {
         if (month === 0) {
             setYear(year - 1);

@@ -9,35 +9,8 @@ export const router = (
         {/* Routes: 라우터의 루트를 나타내는 컴포넌트 */}
         <Routes>
             <Route path="/" element={<CalendarPage />} />
-            <Route path="/diary/edit" element={<DiaryEdit />} />
+            <Route path="/diary/edit/" element={<DiaryEdit />} />
         </Routes>
     </BrowserRouter>
 );
 
-
-
-
-// import {CalendarPage} from "./Calendar/CalendarPage.jsx";
-// import { createBrowserRouter } from "react-router-dom";
-// import { DiaryEdit } from "./DiaryEditPage.jsx";
-// import App from './App.jsx'
-
-
-// export const router = createBrowserRouter([
-//     {
-//         path: "/",
-//         element: <App/>,
-//         children: [
-//             {path: "",
-//             element: <CalendarPage/>
-//             },
-//             {path: "/diary/edit",
-//             element: <DiaryEdit/>
-//             }
-//         ]
-//     }
-
-// ]
-
-
-    

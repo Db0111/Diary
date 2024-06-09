@@ -1,5 +1,7 @@
 import styled from "styled-components"
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+
 
 const Weeks = styled.div`
         display: flex;
@@ -21,6 +23,7 @@ export function Calendar(props) {
     /**
      * 주어진 년 월에 해당하는 캘린더 배열을 만드는 함수
      */
+    const [date, setDate] = useState(new Date().getDate());
 
     const getWeeks = (year, month) => {
         let weeks = []
@@ -74,14 +77,11 @@ export function Calendar(props) {
         return weeks;
     }
     const navigate = useNavigate();
-    const handleOneDayClicked = () => {
-        navigate(`/diary/edit?date=${props.year}년 ${props.month + 1}월 ${props.date}일`);
+    const handleOneDayClicked = (ClickedDate) => {
+        setDate(ClickedDate);
+        // Todo: date 값 undefined 뜨는 부분 수정 필요
+        navigate(`/diary/edit?date=${props.year}년 ${props.month + 1}월 ${ClickedDate}일`);
     }
-        // if (date !== 0) {
-        //     alert(`${props.year}년 ${props.year + 1}월 ${date}일 로 이동하는 기능을 구현중입니다.`)
-
-            // TODO Navigate ( 페이지 전환 ) 구현
-             // navigate 함수를 사용하여 페이지 이동
         
     
 
@@ -107,7 +107,7 @@ export function Calendar(props) {
                         // date가 0이면 빈칸을, 0이 아니면 날짜를 표시한다.
                         // date가 0이면 empty 클래스를, 0이 아니면 date 클래스를 적용한다. 
                         <div
-                            onClick={() => handleOneDayClicked()}
+                            onClick={() => handleOneDayClicked(date)}
                             style={{width: "2rem"}}
                             key={dateIndex}
                             className={date === 0 ? "empty" : "date"}
