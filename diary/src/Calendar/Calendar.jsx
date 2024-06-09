@@ -79,8 +79,8 @@ export function Calendar(props) {
     const navigate = useNavigate();
     const handleOneDayClicked = (ClickedDate) => {
         setDate(ClickedDate);
-        // Todo: date 값 undefined 뜨는 부분 수정 필요
-        navigate(`/diary/edit?date=${props.year}년 ${props.month + 1}월 ${ClickedDate}일`);
+        // Todo: year, month,ClickedDate 세개를 따로 쿼리스트링으로 받을 것
+        navigate(`/diary/edit?date=${props.year}-${props.month + 1}-${ClickedDate}`);
     }
         
     

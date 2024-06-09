@@ -9,6 +9,7 @@ export const router = (
         {/* Routes: 라우터의 루트를 나타내는 컴포넌트 */}
         <Routes>
             <Route path="/" element={<CalendarPage />} />
+            {/* DiaryEdit 에서 edit 빼기 */}
             <Route path="/diary/edit/" element={<DiaryEdit />} />
         </Routes>
     </BrowserRouter>
