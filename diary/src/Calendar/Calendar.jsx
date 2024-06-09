@@ -1,6 +1,19 @@
 import styled from "styled-components"
+import { useNavigate } from 'react-router-dom';
 
+const Weeks = styled.div`
+        display: flex;
+        flex-direction: row;
+        margin: auto;
+        justify-content: space-between;
+    `
 
+const Week = styled.div`
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        justify-content: space-between;
+    `
 
 
 export function Calendar(props) {
@@ -59,14 +72,17 @@ export function Calendar(props) {
 
         return weeks;
     }
-
-    const handleOneDayClicked = (date) => {
-        if (date !== 0) {
-            alert(`${props.year}년 ${props.year + 1}월 ${date}일 로 이동하는 기능을 구현중입니다.`)
+    const navigate = useNavigate();
+    const handleOneDayClicked = () => {
+        navigate("/diary/edit");
+    }
+        // if (date !== 0) {
+        //     alert(`${props.year}년 ${props.year + 1}월 ${date}일 로 이동하는 기능을 구현중입니다.`)
 
             // TODO Navigate ( 페이지 전환 ) 구현
-        }
-    }
+             // navigate 함수를 사용하여 페이지 이동
+        
+    
 
     return (
         <div className="cal_table">
@@ -90,7 +106,7 @@ export function Calendar(props) {
                         // date가 0이면 빈칸을, 0이 아니면 날짜를 표시한다.
                         // date가 0이면 empty 클래스를, 0이 아니면 date 클래스를 적용한다. 
                         <div
-                            onClick={() => handleOneDayClicked(date)}
+                            onClick={() => handleOneDayClicked()}
                             style={{width: "2rem"}}
                             key={dateIndex}
                             className={date === 0 ? "empty" : "date"}
@@ -105,19 +121,8 @@ export function Calendar(props) {
             
         </div>
     )
+
+
+
+
 }
-
-
-const Weeks = styled.div`
-        display: flex;
-        flex-direction: row;
-        margin: auto;
-        justify-content: space-between;
-    `
-
-const Week = styled.div`
-        display: flex;
-        flex-direction: column;
-        margin: auto;
-        justify-content: space-between;
-    `
