@@ -96,8 +96,10 @@ export function Calendar(props) {
     const handleOneDayClicked = (ClickedDate) => {
         setDate(ClickedDate);
         // Todo: year, month,ClickedDate 세개를 따로 쿼리스트링으로 받을 것
-        navigate(`/diary/?date=${props.year}-${props.month + 1}-${ClickedDate}`);
+        navigate(`/diary/?year=${props.year}&month=${props.month + 1}&date=${ClickedDate}`);
     }
+    
+
         
     
     // Todo 일기가 있는 날엔 밑에 점 표시하기
@@ -134,8 +136,10 @@ export function Calendar(props) {
                 </Weeks>
             ))}
             </Week>
+        
             
         </div>
+
     )
 
 

@@ -5,6 +5,8 @@ export function DiaryEdit() {
     const navigate = useNavigate();
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
+    const year = queryParams.get('year')
+    const month = queryParams.get('month')
     const date = queryParams.get('date');
 
     const ReturnCalendar = () => {navigate("/");}
@@ -47,7 +49,7 @@ export function DiaryEdit() {
         <div className='DiaryContainer'>
             {/* 누른 날짜 받아와서 상단에 띄우기 */}
             <div className='DiaryTitle'>
-                {date && <div className='ClickedDate'>{date}</div>}
+                {date && <div className='ClickedDate'>{`${year}년 ${month}월 ${date}일`}</div>}
                 {/* 달력으로 돌아가는 버튼*/}
                 <button onClick={ReturnCalendar}>돌아가기</button>
             </div>
