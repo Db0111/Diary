@@ -16,8 +16,23 @@ const Week = styled.div`
         margin: auto;
         justify-content: space-between;
     `
-
-
+const Weekday = styled.div`
+        width: 6rem;
+        height: 3rem;
+        font-size: 1.5rem;
+    `
+const Sunday = styled.div`
+        width: 6rem;
+        height: 3rem;
+        font-size: 1.5rem;
+        color: red;
+    `
+const Saturday = styled.div`
+        width: 6rem;
+        height: 3rem;
+        font-size: 1.5rem;
+        color: blue;
+    `
 export function Calendar(props) {
 
     /**
@@ -77,27 +92,27 @@ export function Calendar(props) {
         return weeks;
     }
     const navigate = useNavigate();
+    //ClickedDate는 함수의 매개변수, 특정 날짜 셀 클릭될때 날짜 값 받아옴
     const handleOneDayClicked = (ClickedDate) => {
         setDate(ClickedDate);
         // Todo: year, month,ClickedDate 세개를 따로 쿼리스트링으로 받을 것
-        navigate(`/diary/edit?date=${props.year}-${props.month + 1}-${ClickedDate}`);
+        navigate(`/diary/?date=${props.year}-${props.month + 1}-${ClickedDate}`);
     }
         
     
-
+    // Todo 일기가 있는 날엔 밑에 점 표시하기
     return (
         <div className="cal_table">
             <Weeks>
-                <div style={{width: "2rem"}} className="Sun">Sun</div>
-                <div style={{width: "2rem"}} className="Mon">Mon</div>
-                <div style={{width: "2rem"}} className="Tue">Tue</div>
-                <div style={{width: "2rem"}} className="Wed">Wed</div>
-                <div style={{width: "2rem"}} className="Thu">Thu</div>
-                <div style={{width: "2rem"}} className="Fri">Fri</div>
-                <div style={{width: "2rem"}} className="Sat">Sat</div>
+                <Sunday>Sun</Sunday>
+                <Weekday>Mon</Weekday>
+                <Weekday>Tue</Weekday>
+                <Weekday>Wed</Weekday>
+                <Weekday>Thu</Weekday>
+                <Weekday>Fri</Weekday>
+                <Saturday>Sat</Saturday>
             </Weeks>
             <Week>
-                {/* 1주차부터 날짜 그리기 */}
                 {/* weeks 배열에 있는 요소들을 순회하며 날짜를 그린다. */}
                 {getWeeks(props.year, props.month).map((dateList, weekIndex) => (
                 // 한 주를 나타내는 Week 컴포넌트
@@ -108,7 +123,7 @@ export function Calendar(props) {
                         // date가 0이면 empty 클래스를, 0이 아니면 date 클래스를 적용한다. 
                         <div
                             onClick={() => handleOneDayClicked(date)}
-                            style={{width: "2rem"}}
+                            style={{width: "6rem", height: "3rem", paddingTop:"5px"}}
                             key={dateIndex}
                             className={date === 0 ? "empty" : "date"}
                         >

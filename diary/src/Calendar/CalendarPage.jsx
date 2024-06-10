@@ -1,5 +1,11 @@
 import { useState } from 'react';
 import {Calendar} from "./Calendar.jsx";
+import styled from "styled-components"
+
+const Button = styled.button`
+    border: 1px solid lightgray;
+    margin: 0 5px;
+    `
 
 
 // calendar 앱 함수 만들어 html 태그들 넣기
@@ -39,19 +45,20 @@ export function CalendarPage() {
     return (
         <div className="container">
             <div className="title">
-                <div>{year}년 {month + 1}월</div>
+                <div className='thisMonth'>{year}년 {month + 1}월</div>
 
                 <div className="button-container">
                     {/* 이전 달로 넘어가는 버튼 */}
-                    <button onClick={handlePrevMonthClicked}>이전 달</button>
+                    <Button onClick={handlePrevMonthClicked}>이전 달</Button>
                     {/* 오늘 날짜로 돌아오는 버튼 */}
-                    <button onClick={handleTodayClicked}>Today</button>
+                    <Button onClick={handleTodayClicked}>Today</Button>
                     {/* 다음 달로 넘어가는 버튼 */}
-                    <button onClick={handleNextMonthClicked}>다음 달</button>
+                    <Button onClick={handleNextMonthClicked}>다음 달</Button>
                 </div>
                 {/*<Calendar year={year} month={month + 1} className = "thisMonth"></Calendar>*/}
-                <Calendar year={year} month={month}/>
             </div>
+            <Calendar year={year} month={month}/>
+
 
             
         </div>

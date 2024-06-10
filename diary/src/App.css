@@ -5,17 +5,46 @@
   text-align: center;
 }
 
-.thisMonth {
-  font-size: 10rem;
+.ibm-plex-sans-kr-regular {
+  font-family: "IBM Plex Sans KR", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.container{
+  background-color: aliceblue;
+  padding: 3rem;
+  border-radius: 1rem;
+}
+.title{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 1rem;
   margin-bottom: 1rem;
+}
+.thisMonth { 
+  font-size: 2rem;
+  font-family: "IBM Plex Sans KR", sans-serif;
+
   
 }
+
+
+
 .cal_table {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-family: "IBM Plex Sans KR", sans-serif;
+
 }
 
+.date:hover{
+  background-color: #f0f0f0;
+  cursor: pointer;
+  
+
+}
 .DiaryContainer{
   display: flex;
   flex-direction: column;  
