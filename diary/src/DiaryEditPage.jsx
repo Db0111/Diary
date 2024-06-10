@@ -33,6 +33,7 @@ export function DiaryEdit() {
     const handleRemove = () => {
         // 직접 localStorage에 값에서 삭제
             localStorage.removeItem(date, text);
+            setText('')
             alert('일기가 삭제되었습니다.');
         }
     
@@ -44,7 +45,7 @@ export function DiaryEdit() {
     
         <div className='DiaryContainer'>
             {/* 누른 날짜 받아와서 상단에 띄우기 */}
-            {date && <div>{date}</div>}
+            {date && <div className='ClickedDate'>{date}</div>}
             <div className="DiaryInputContainer">
                 {/* 저장된 일기 값이 있는 경우 내용 보여주기 */}
                 <textarea 
@@ -66,10 +67,7 @@ export function DiaryEdit() {
 
 
         </div>
-        //일기 입력할 수 있는 칸 
-        // 버튼 (저장, 수정, 삭제)
-        // 돌아갈 수 있는 버튼
-        
+
 
     )
 }
