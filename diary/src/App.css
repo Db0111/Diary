@@ -15,9 +15,37 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.DiaryContainer{
+  display: flex;
+  flex-direction: column;  
+}
+.DiaryTitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+
+}
+.ClickedDate {
+  display: flex;
+  font-family: sans-serif;
+  font-size: 2rem;
+}
+
 .DiaryInput{
+  font-size: 1rem;
   display: flex;
   width: 40rem;
   height: 30rem;
   resize: none;
+  border-radius: 15px;
+  border-width: 1px;
+  padding: 10px;
+  margin-bottom: 2rem;
 }
+
+.DiaryInput::placeholder {
+  font-size: 20px;
+}
+
