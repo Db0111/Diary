@@ -30,6 +30,7 @@ export function DiaryEdit() {
         }
     }
 
+
     const handleRemove = () => {
         // 직접 localStorage에 값에서 삭제
             localStorage.removeItem(date, text);
@@ -47,6 +48,7 @@ export function DiaryEdit() {
             {/* 누른 날짜 받아와서 상단에 띄우기 */}
             <div className='DiaryTitle'>
                 {date && <div className='ClickedDate'>{date}</div>}
+                {/* 달력으로 돌아가는 버튼*/}
                 <button onClick={ReturnCalendar}>돌아가기</button>
             </div>
             
@@ -58,19 +60,17 @@ export function DiaryEdit() {
                     value={text}
                     placeholder="오늘 당신의 하루는 어떠셨나요?"
                 ></textarea>
+                <div className="buttonContainer">
+                    <button onClick={handleSave}>저장하기</button>
+                    {/* Todo  일기에 이미 값이 있으면 수정 및 저장하기 로 텍스트 바뀌는 것*/}
+                    <button onClick={handleRemove}>삭제하기</button>
+                </div>
             </div>
 
-            <div className="button-container">
-                    {/* 달력으로 돌아가는 버튼*/}
-                <button onClick={handleSave}>저장하기</button>
-                <button>수정하기</button>
-                <button onClick={handleRemove}>삭제하기</button>
-                   
-            </div>
+           
 
 
         </div>
-
 
     )
 }
