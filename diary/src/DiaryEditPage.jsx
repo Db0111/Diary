@@ -26,7 +26,7 @@ export function DiaryEdit() {
     const handleSave = () => {
         // 직접 localStorage에 값을 저장
         if (date && text) {
-            localStorage.setItem(date, text);
+            localStorage.setItem(`${year}-${month}-${date}`, text);
             alert('일기가 저장되었습니다.');
 
         }
@@ -35,7 +35,7 @@ export function DiaryEdit() {
 
     const handleRemove = () => {
         // 직접 localStorage에 값에서 삭제
-            localStorage.removeItem(date, text);
+            localStorage.removeItem(`${year}-${month}-${date}`, text);
             setText('')
             alert('일기가 삭제되었습니다.');
         }
