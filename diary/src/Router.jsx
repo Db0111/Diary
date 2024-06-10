@@ -10,7 +10,7 @@ export const router = (
         <Routes>
             <Route path="/" element={<CalendarPage />} />
             {/* DiaryEdit 에서 edit 빼기 */}
-            <Route path="/diary/edit/" element={<DiaryEdit />} />
+            <Route path="/diary/" element={<DiaryEdit />} />
         </Routes>
     </BrowserRouter>
 );
