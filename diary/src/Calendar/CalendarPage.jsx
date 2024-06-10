@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import {Calendar} from "./Calendar.jsx";
 import styled from "styled-components"
+import Modal from '/src/Modal.jsx';
+
 
 const Button = styled.button`
     border: 1px solid lightgray;
@@ -42,6 +44,14 @@ export function CalendarPage() {
         }
     };
 
+    //일기 목록 불러오는 모달 띄우기
+    //초기값은 띄우지 않아야 하므로 false
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
+
+
     return (
         <div className="container">
             <div className="title">
@@ -58,6 +68,8 @@ export function CalendarPage() {
                 {/*<Calendar year={year} month={month + 1} className = "thisMonth"></Calendar>*/}
             </div>
             <Calendar year={year} month={month}/>
+            <button onClick={openModal}>일기 목록</button>
+            <Modal isOpen={isModalOpen} closeModal={closeModal}/>
 
 
             

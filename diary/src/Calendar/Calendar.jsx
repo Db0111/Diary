@@ -96,7 +96,10 @@ export function Calendar(props) {
     const handleOneDayClicked = (ClickedDate) => {
         setDate(ClickedDate);
         // Todo: year, month,ClickedDate 세개를 따로 쿼리스트링으로 받을 것
-        navigate(`/diary/?year=${props.year}&month=${props.month + 1}&date=${ClickedDate}`);
+        if (ClickedDate !== 0) {
+            navigate(`/diary/?year=${props.year}&month=${props.month + 1}&date=${ClickedDate}`)
+        }
+
     }
     
 
