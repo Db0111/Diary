@@ -12,7 +12,7 @@ export function DiaryEdit() {
     const ReturnCalendar = () => {navigate("/");}
 
     //date 가 있으면 해당 날짜의 일기를 불러옴, 없으면 빈 문자열
-    const savedText = date ? localStorage.getItem(date) : '';
+    const savedText = date ? localStorage.getItem(`${year}-${month}-${date}`) : '';
    
     // savedText 값이 존재한다면 해당 값을 초기값으로 설정하고, 그렇지 않으면 빈 문자열('')을 초기값으로 설정합니다.
     const [text, setText] = useState(savedText || '');
