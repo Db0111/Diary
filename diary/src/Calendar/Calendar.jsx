@@ -33,12 +33,23 @@ const Saturday = styled.div`
         font-size: 1.5rem;
         color: blue;
     `
+const DateCircle = styled.div`
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        border: 1px dashed blue;
+        background: none;
+        z-index: 300;
+`
 export function Calendar(props) {
 
     /**
      * 주어진 년 월에 해당하는 캘린더 배열을 만드는 함수
      */
     const [date, setDate] = useState(new Date().getDate());
+    const today = new Date()
 
     const getWeeks = (year, month) => {
         let weeks = []
@@ -91,6 +102,14 @@ export function Calendar(props) {
 
         return weeks;
     }
+    const isToday = (date) => {
+        return (
+            date === today.getDate() &&
+            props.month === today.getMonth() &&
+            props.year === today.getFullYear()
+        );
+    };
+
     const navigate = useNavigate();
     //ClickedDate는 함수의 매개변수, 특정 날짜 셀 클릭될때 날짜 값 받아옴
     const handleOneDayClicked = (ClickedDate) => {
@@ -128,18 +147,34 @@ export function Calendar(props) {
                         // date가 0이면 empty 클래스를, 0이 아니면 date 클래스를 적용한다. 
                         <div
                             onClick={() => handleOneDayClicked(date)}
-                            style={{width: "6rem", height: "3rem", paddingTop:"5px"}}
+                            style={{width: "6rem", 
+                            height: "4rem", 
+                            paddingTop:"5px", 
+                            display: 'flex',
+                            justifyContent:'center',
+                            border: '0.2px solid lightgray'
+                        }}
                             key={dateIndex}
                             className={date === 0 ? "empty" : "date"}
                         >
                             {/* date가 0이 아닐 경우 date를, 0이 맞을 경우 빈 문자열 반환 */}
-                            {date !== 0 ? date : ""}
+                            {date !== 0 ? (
+                                //date가 0이 아니고 오늘 날짜일 경우에느 Datecircle 그려
+                                isToday(date) ? (<DateCircle>{date}</DateCircle>) 
+                                //date 0이 아니고 오늘 날짜일 경우에는 date 만 나타내
+                                : (date)
+                            ) : (
+                                //date가 0일 경우에는 빈칸을 출력해
+                                ""
+                            )}
+                            
+                            
+                            
                         </div>
-                    ))}
+                    ))} 
                 </Weeks>
             ))}
             </Week>
-        
             
         </div>
 
