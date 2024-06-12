@@ -76,3 +76,4 @@ export function DiaryEdit() {
 
     )
 }
+export default DiaryEdit

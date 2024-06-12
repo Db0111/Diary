@@ -59,11 +59,11 @@ export function CalendarPage() {
 
                 <div className="button-container">
                     {/* 이전 달로 넘어가는 버튼 */}
-                    <Button onClick={handlePrevMonthClicked}>이전 달</Button>
+                    <Button onClick={handlePrevMonthClicked} data-test = "이전-달">이전 달</Button>
                     {/* 오늘 날짜로 돌아오는 버튼 */}
-                    <Button onClick={handleTodayClicked}>Today</Button>
+                    <Button onClick={handleTodayClicked} data-test='Today'>Today</Button>
                     {/* 다음 달로 넘어가는 버튼 */}
-                    <Button onClick={handleNextMonthClicked}>다음 달</Button>
+                    <Button onClick={handleNextMonthClicked} data-test="다음-달">다음 달</Button>
                 </div>
                 {/*<Calendar year={year} month={month + 1} className = "thisMonth"></Calendar>*/}
             </div>
@@ -80,7 +80,7 @@ export function CalendarPage() {
     )
 }
 
-
+export default CalendarPage
 //
 // <CalendarPage>
 //     year = 2024

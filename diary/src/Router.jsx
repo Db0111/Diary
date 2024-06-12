@@ -15,3 +15,5 @@ export const router = (
     </BrowserRouter>
 );
 
+export default router
+

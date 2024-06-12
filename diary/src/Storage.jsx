@@ -13,3 +13,5 @@ export function useLocalStorage(date, diaryInput) {
 
 //     localStorage.setItem('userName', userName)
 // }
+
+export default useLocalStorage
