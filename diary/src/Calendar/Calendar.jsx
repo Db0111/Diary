@@ -51,9 +51,9 @@ const Diarycircle = styled.div`
         `
 export function Calendar(props) {
 
-    /**
-     * 주어진 년 월에 해당하는 캘린더 배열을 만드는 함수
-     */
+    
+    // 주어진 년 월에 해당하는 캘린더 배열을 만드는 함수
+    // 초기 값은 오늘 날짜로 설정, setDate 로 업데이트
     const [date, setDate] = useState(new Date().getDate());
     const today = new Date()
     const [diaryData, setDiaryData] = useState({});
@@ -119,7 +119,9 @@ export function Calendar(props) {
     };
     // 일기가 있는지 판단하는 함수
     const hasDiary = (year, month, date)=> {
+        //localStorage에서 키를 통해 받아온 값 diaryData에 할당
         const diaryData = localStorage.getItem(`${year}-${month}-${date}`);
+        //diaryData가 null 이 아니면 true, null 이면 false 반환
         return diaryData !== null;
     }
     useEffect(() => {
@@ -128,10 +130,9 @@ export function Calendar(props) {
             data[i] = hasDiary(props.year, props.month + 1, i);
         }
         setDiaryData(data);
+        //의존성 배열, 얘네 값이 변하면 useEffect 작동시켜줘!
     }, [props.year, props.month]);
-    // useEffect(() => {
-    //     setDiaryData(hasDiary(props.year, props.month, date));
-    // },[props.year, props.month, date]);
+
 
 
     const navigate = useNavigate();
