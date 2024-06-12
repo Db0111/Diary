@@ -20,9 +20,6 @@ const ModalBox = styled.div`
 export function Modal({isOpen, closeModal, year, month}) {
     const [diaryData, setDiaryData] = useState({});
 
-
-
-
     function HasSavedDiary (year, month, date) {
         return localStorage.getItem(`${year}-${month}-${date}`);
         
