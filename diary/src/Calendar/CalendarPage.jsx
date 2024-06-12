@@ -47,7 +47,7 @@ export function CalendarPage() {
     //일기 목록 불러오는 모달 띄우기
     //초기값은 띄우지 않아야 하므로 false
     const [isModalOpen, setIsModalOpen] = useState(false);
-
+    //모달이 열리는 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
@@ -68,8 +68,11 @@ export function CalendarPage() {
                 {/*<Calendar year={year} month={month + 1} className = "thisMonth"></Calendar>*/}
             </div>
             <Calendar year={year} month={month}/>
-            <button onClick={openModal}>일기 목록</button>
-            <Modal isOpen={isModalOpen} closeModal={closeModal}/>
+            <Button onClick={openModal} 
+            style = {{margin: '1rem'}}>일기 목록</Button>
+            {/* isOpe: 모달의 표시 여부를 결정하는 상태값 */}
+            {/* closeModal은 닫는 버튼 눌렀을 때 기능 */}
+            <Modal isOpen={isModalOpen} closeModal={closeModal} year={year} month={month}/>
 
 
             
