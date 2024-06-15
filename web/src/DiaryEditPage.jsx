@@ -21,22 +21,22 @@ export function DiaryEditPage(props) {
 
 
     useEffect(() => {
-        if (date&& props.diaryMap && props.diaryMap[date]) {
-            // 'http://localhost:5144/api/diaries/?year=2024&month=6&date=13'
-            axios.get(`http://localhost:5144/api/diaries/?year=${year}&month=${month}&date=${date}`)
-                .then(response => {
-                    const savedText = props.diaryMap[article]
-                    setText(savedText);
-                    setIsLoading(false);
-                })
-                .catch(error => {
-                    console.error("There was an error fetching the diary entry!", error);
-                    setIsLoading(false);
-                })        
-        } else {
-            setIsLoading(false)
-        }
-    }, [date, year, month])
+        axios.get(`http://localhost:5144/api/diaries/?year=${year}&month=${month}&date=${date}`)
+            .then(response => {
+                console.log(`${year}-${month}-${date}`, "`${year}-${month}-${date}`")
+                console.log(response)
+                if (response.data.data.length === 1) {
+                    const article = response.data.data[0].article;
+                    setText(article);
+                }
+
+                setIsLoading(false);
+            })
+            .catch(error => {
+                console.error("There was an error fetching the diary entry!", error);
+                setIsLoading(false);
+            })
+    }, [])
    
     // handleDiaryChange 함수는 textarea의 입력값이 변경될 때마다 호출되어 해당 입력값을 text 상태로 업데이트합니다.
     const handleDiaryChange = (event) => {

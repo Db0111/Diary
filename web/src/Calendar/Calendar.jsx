@@ -54,9 +54,7 @@ export function Calendar(props) {
     
     // 주어진 년 월에 해당하는 캘린더 배열을 만드는 함수
     // 초기 값은 오늘 날짜로 설정, setDate 로 업데이트
-    const [date, setDate] = useState(new Date().getDate());
     const today = new Date()
-    const [diaryData, setDiaryData] = useState({});
 
 
     const getWeeks = (year, month) => {
@@ -130,7 +128,6 @@ export function Calendar(props) {
         for (let i = 1; i <= new Date(props.year, props.month + 1, 0).getDate(); i++) {
             data[i] = hasDiary(props.year, props.month + 1, i);
         }
-        setDiaryData(data);
         //의존성 배열, 얘네 값이 변하면 useEffect 작동시켜줘!
     }, [props.year, props.month, props.diaryMap]);
 
@@ -139,17 +136,16 @@ export function Calendar(props) {
     const navigate = useNavigate();
     //ClickedDate는 함수의 매개변수, 특정 날짜 셀 클릭될때 날짜 값 받아옴
     const handleOneDayClicked = (ClickedDate) => {
-        setDate(ClickedDate);
         // Todo: year, month,ClickedDate 세개를 따로 쿼리스트링으로 받을 것
         if (ClickedDate !== 0) {
             navigate(`/diary/?year=${props.year}&month=${props.month + 1}&date=${ClickedDate}`)
         }
-        }
+    }
     
     
 
         
-        return (
+    return (
         <div className="cal_table">
             <Weeks>
                 <Sunday>Sun</Sunday>
@@ -182,7 +178,7 @@ export function Calendar(props) {
                             className={date === 0 ? "empty" : "date"}
                             
                         >
-                            {date !== 0 && diaryData[date] && <Diarycircle />}                            {/* date가 0이 아닐 경우 date를, 0이 맞을 경우 빈 문자열 반환 */}
+                            {date !== 0 && props.diaryMap[date] && <Diarycircle />}                            {/* date가 0이 아닐 경우 date를, 0이 맞을 경우 빈 문자열 반환 */}
                             {date !== 0 ? (
                                 //date가 0이 아니고 오늘 날짜일 경우에느 Datecircle 그려
                                 isToday(date) ? (<TodayCircle>{date}</TodayCircle>) 
