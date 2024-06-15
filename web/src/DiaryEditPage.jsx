@@ -22,11 +22,20 @@ export function DiaryEditPage() {
     useEffect(() => {
         axios.get(`http://localhost:5144/api/diaries/?year=${year}&month=${month}&date=${date}`)
             .then(response => {
-                const savedText = response.data.data[0].article
-                setText(savedText);
-                setIsLoading(false);
+                const HasSavedDiary = response.data.data;
+                if (HasSavedDiary && HasSavedDiary.length > 0) {
+                    const savedText = HasSavedDiary[0].article;
+                    setText(savedText ? savedText : '');
+                    setIsLoading(false);                   
+
+                } else {
+                    setText('');
+                    setIsLoading(false);                   
+
+                }
             })
-            .catch(error => {
+
+            .catch (error => {
                 console.error("There was an error fetching the diary entry!", error);
                 setIsLoading(false);
             })        
@@ -41,7 +50,7 @@ export function DiaryEditPage() {
     const handleSave = () => {
         // api릁 통해 일기 저장
         if (date && text) {
-            axios.post(`http://localhost:5144/api/diaries/?year=${year}&month=${month}&date=${date}`, {article: text })
+            axios.post(`http://localhost:5144/api/diaries/?year=${year}&month=${month}&date=${date}`, {article: text})
                 .then(response => {
                     alert('일기가 저장되었습니다.');
                 })
