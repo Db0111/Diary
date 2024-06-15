@@ -54,9 +54,7 @@ export function Calendar(props) {
     
     // 주어진 년 월에 해당하는 캘린더 배열을 만드는 함수
     // 초기 값은 오늘 날짜로 설정, setDate 로 업데이트
-    const [date, setDate] = useState(new Date().getDate());
     const today = new Date()
-    const [diaryData, setDiaryData] = useState({});
 
 
     const getWeeks = (year, month) => {
@@ -119,11 +117,9 @@ export function Calendar(props) {
     };
     // 일기가 있는지 판단하는 함수
     const hasDiary = (year,month, date)=> {
-        const diaryData = props.diaryMap[date]
-        console.log(props.diaryMap)
-        console.log(`Checking diary for ${year}-${month}-${date}:`, diaryData);
+        console.log(`Checking diary for ${year}-${month}-${date}:`, props.diaryMap[date]);
         //diaryData가 null 이 아니면 true, null 이면 false 반환
-        return !!diaryData;
+        return !!props.diaryMap[date];
     }
     useEffect(() => {
         let data = {};
@@ -139,7 +135,6 @@ export function Calendar(props) {
     const navigate = useNavigate();
     //ClickedDate는 함수의 매개변수, 특정 날짜 셀 클릭될때 날짜 값 받아옴
     const handleOneDayClicked = (ClickedDate) => {
-        setDate(ClickedDate);
         // Todo: year, month,ClickedDate 세개를 따로 쿼리스트링으로 받을 것
         if (ClickedDate !== 0) {
             navigate(`/diary/?year=${props.year}&month=${props.month + 1}&date=${ClickedDate}`)
@@ -149,7 +144,7 @@ export function Calendar(props) {
     
 
         
-        return (
+    return (
         <div className="cal_table">
             <Weeks>
                 <Sunday>Sun</Sunday>
@@ -182,7 +177,7 @@ export function Calendar(props) {
                             className={date === 0 ? "empty" : "date"}
                             
                         >
-                            {date !== 0 && diaryData[date] && <Diarycircle />}                            {/* date가 0이 아닐 경우 date를, 0이 맞을 경우 빈 문자열 반환 */}
+                            {date !== 0 && props.diaryMap[date] && <Diarycircle />}                            {/* date가 0이 아닐 경우 date를, 0이 맞을 경우 빈 문자열 반환 */}
                             {date !== 0 ? (
                                 //date가 0이 아니고 오늘 날짜일 경우에느 Datecircle 그려
                                 isToday(date) ? (<TodayCircle>{date}</TodayCircle>) 

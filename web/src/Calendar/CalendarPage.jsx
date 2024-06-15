@@ -17,16 +17,12 @@ export function CalendarPage() {
     // API 를 제공해준다.
     const [year, setYear] = useState(new Date().getFullYear());
     const [month, setMonth] = useState(new Date().getMonth());
-    const [diaryMap, setDiaryMap] = useState({});
+    const [diaries, setdiaries] = useState({});
     // api 호출 
     useEffect(() => {
         axios.get(`http://localhost:5144/api/diaries/?year=${year}&month=${month + 1}`)
                 .then(response => {
-                    const temp = {}
-                    for (let diary of response.data.data) {
-                        temp[diary.date] = diary.article;
-                    }
-                    setDiaryMap(temp);
+                    setdiaries(response.data.data)
                 })
                 .catch(error => {
                     console.error("There was an error fetching the diary entry!", error);
@@ -64,6 +60,14 @@ export function CalendarPage() {
     const closeModal = () => setIsModalOpen(false);
 
 
+    const getDiaryMap = (diaryList) => {
+        const temp = {}
+        for (let diary of diaryList) {
+            temp[diary.date] = diary.article;
+        }
+        return temp;
+    }
+
     return (
         <div className="container">
             <div className="title">
@@ -79,12 +83,12 @@ export function CalendarPage() {
                 </div>
                 {/*<Calendar year={year} month={month + 1} className = "thisMonth"></Calendar>*/}
             </div>
-            <Calendar year={year} month={month} diaryMap={diaryMap}/>
+            <Calendar year={year} month={month} diaryMap={getDiaryMap(diaries)}/>
             <Button onClick={openModal} 
             style = {{margin: '1rem'}}>일기 목록</Button>
             {/* isOpe: 모달의 표시 여부를 결정하는 상태값 */}
             {/* closeModal은 닫는 버튼 눌렀을 때 기능 */}
-            <Modal isOpen={isModalOpen} closeModal={closeModal} year={year} month={month}/>
+            <Modal isOpen={isModalOpen} closeModal={closeModal} year={year} month={month} diaries={diaries}/>
 
 
             

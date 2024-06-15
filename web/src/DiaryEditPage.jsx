@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export function DiaryEdit(props) {
+export function DiaryEditPage() {
     const navigate = useNavigate();
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
@@ -13,7 +13,6 @@ export function DiaryEdit(props) {
     const ReturnCalendar = () => {navigate("/");}
 
     //date 가 있으면 해당 날짜의 일기를 불러옴, 없으면 빈 문자열
-    // const savedText = date ? localStorage.getItem(`${year}-${month}-${date}`) : '';
    
     // savedText 값이 존재한다면 해당 값을 초기값으로 설정하고, 그렇지 않으면 빈 문자열('')을 초기값으로 설정합니다.
     const [text, setText] = useState('');
@@ -21,21 +20,16 @@ export function DiaryEdit(props) {
 
 
     useEffect(() => {
-        if (date&& props.diaryMap && props.diaryMap[date]) {
-            // 'http://localhost:5144/api/diaries/?year=2024&month=6&date=13'
-            axios.get(`http://localhost:5144/api/diaries/?year=${year}&month=${month}&date=${date}`)
-                .then(response => {
-                    const savedText = props.diaryMap[article]
-                    setText(savedText);
-                    setIsLoading(false);
-                })
-                .catch(error => {
-                    console.error("There was an error fetching the diary entry!", error);
-                    setIsLoading(false);
-                })        
-        } else {
-            setIsLoading(false)
-        }
+        axios.get(`http://localhost:5144/api/diaries/?year=${year}&month=${month}&date=${date}`)
+            .then(response => {
+                const savedText = response.data.data[0].article
+                setText(savedText);
+                setIsLoading(false);
+            })
+            .catch(error => {
+                console.error("There was an error fetching the diary entry!", error);
+                setIsLoading(false);
+            })        
     }, [date, year, month])
    
     // handleDiaryChange 함수는 textarea의 입력값이 변경될 때마다 호출되어 해당 입력값을 text 상태로 업데이트합니다.
@@ -110,4 +104,4 @@ export function DiaryEdit(props) {
 
     )
 }
-export default DiaryEdit
+export default DiaryEditPage;
