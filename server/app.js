@@ -37,9 +37,16 @@ app.use(express.static(path.join(__dirname, '../web/dist')));
 
 //diaries 전체 조회
 app.get('/api/diaries', async (req, res) => {
-    const {year, month} = req.query;
-    const sql = `SELECT * FROM diaries WHERE year=${year} and month=${month}`;
-    db.all(sql, [], (err, rows) => {
+    const {year, month, date} = req.query;
+    let sql = `SELECT * FROM diaries`;
+    if (year || month || date) {
+        sql += " WHERE "
+        year && (sql += "year=?")
+        month && (sql += " and month=?")
+        date && (sql += " and date=?")
+
+    }
+    db.all(sql, [year, month, date], (err, rows) => {
         if (err) {
             console.error('Error querying database:', err);
             return res.status(500).json({
@@ -53,29 +60,29 @@ app.get('/api/diaries', async (req, res) => {
         });
     });
 });
-// 개별 일기 조회 (아이디에 따라 조회 -> date 값으로 식별)
-app.get('/api/diaries/', (req, res) => {
-    const { year, month, date } = req.query;
-    const sql = `SELECT * FROM diaries WHERE year=? and month=? and date =?`;
-    db.get(sql, [year, month, date], (err, row) => {
-        if (err) {
-            console.error('Error querying database:', err);
-            return res.status(500).json({
-                status: 'Error',
-                error: err.message
-            });
-        }
-        if (!row) {
-            return res.status(404).json({
-                status: 'Not Found'
-            });
-        }
-        res.json({
-            status: 'OK',
-            data: row
-        });
-    });
-});
+// // 개별 일기 조회 (아이디에 따라 조회 -> date 값으로 식별)
+// app.get('/api/diaries/', (req, res) => {
+//     const { year, month, date } = req.query;
+//     const sql = `SELECT * FROM diaries WHERE year=? and month=? and date =?`;
+//     db.get(sql, [year, month, date], (err, row) => {
+//         if (err) {
+//             console.error('Error querying database:', err);
+//             return res.status(500).json({
+//                 status: 'Error',
+//                 error: err.message
+//             });
+//         }
+//         if (!row) {
+//             return res.status(404).json({
+//                 status: 'Not Found'
+//             });
+//         }
+//         res.json({
+//             status: 'OK',
+//             data: row
+//         });
+//     });
+// });
 //일기 저장
 app.post('/api/diaries/', async (req, res) => {
     const {year, month, date} = req.query;
