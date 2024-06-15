@@ -118,10 +118,9 @@ export function Calendar(props) {
         );
     };
     // 일기가 있는지 판단하는 함수
-    const hasDiary = (year, month, date)=> {
-        //localStorage에서 키를 통해 받아온 값 diaryData에 할당
-        // const diaryData = localStorage.getItem(`${year}-${month}-${date}`);
-        const diaryData = props.diaryMap[`${year}-${month}-${date}`];
+    const hasDiary = (year,month, date)=> {
+        const diaryData = props.diaryMap[date]
+        console.log(props.diaryMap)
         console.log(`Checking diary for ${year}-${month}-${date}:`, diaryData);
         //diaryData가 null 이 아니면 true, null 이면 false 반환
         return !!diaryData;
@@ -183,7 +182,7 @@ export function Calendar(props) {
                             className={date === 0 ? "empty" : "date"}
                             
                         >
-                            {date !== 0 && diaryData[`${props.year}-${props.month + 1}-${date}`] && <Diarycircle />}                            {/* date가 0이 아닐 경우 date를, 0이 맞을 경우 빈 문자열 반환 */}
+                            {date !== 0 && diaryData[date] && <Diarycircle />}                            {/* date가 0이 아닐 경우 date를, 0이 맞을 경우 빈 문자열 반환 */}
                             {date !== 0 ? (
                                 //date가 0이 아니고 오늘 날짜일 경우에느 Datecircle 그려
                                 isToday(date) ? (<TodayCircle>{date}</TodayCircle>) 

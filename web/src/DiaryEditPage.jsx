@@ -1,21 +1,42 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-export function DiaryEdit() {
+export function DiaryEdit(props) {
     const navigate = useNavigate();
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const year = queryParams.get('year')
     const month = queryParams.get('month')
     const date = queryParams.get('date');
-
+    //TODO 일기 저장 후에 그 달로 넘어가야하는데 무조건 처음 달로 넘어감 (이건 첫 페이지에 쿼리 파람이 없어서 해야 함)
     const ReturnCalendar = () => {navigate("/");}
 
     //date 가 있으면 해당 날짜의 일기를 불러옴, 없으면 빈 문자열
-    const savedText = date ? localStorage.getItem(`${year}-${month}-${date}`) : '';
+    // const savedText = date ? localStorage.getItem(`${year}-${month}-${date}`) : '';
    
     // savedText 값이 존재한다면 해당 값을 초기값으로 설정하고, 그렇지 않으면 빈 문자열('')을 초기값으로 설정합니다.
-    const [text, setText] = useState(savedText || '');
+    const [text, setText] = useState('');
+    const [isLoading, setIsLoading] = useState(true)
+
+
+    useEffect(() => {
+        if (date&& props.diaryMap && props.diaryMap[date]) {
+            // 'http://localhost:5144/api/diaries/?year=2024&month=6&date=13'
+            axios.get(`http://localhost:5144/api/diaries/?year=${year}&month=${month}&date=${date}`)
+                .then(response => {
+                    const savedText = props.diaryMap[article]
+                    setText(savedText);
+                    setIsLoading(false);
+                })
+                .catch(error => {
+                    console.error("There was an error fetching the diary entry!", error);
+                    setIsLoading(false);
+                })        
+        } else {
+            setIsLoading(false)
+        }
+    }, [date, year, month])
    
     // handleDiaryChange 함수는 textarea의 입력값이 변경될 때마다 호출되어 해당 입력값을 text 상태로 업데이트합니다.
     const handleDiaryChange = (event) => {
@@ -24,24 +45,37 @@ export function DiaryEdit() {
     // 함수로 호출하였을 때 useEffect가 호출되지 않는 문제가 있음 -> 수정 완료
     // 저장 로직 따로 구현 (아래에서 단순히 함수로 useLocalStorage 호출 불가))
     const handleSave = () => {
-        // 직접 localStorage에 값을 저장
+        // api릁 통해 일기 저장
         if (date && text) {
-            localStorage.setItem(`${year}-${month}-${date}`, text);
-            alert('일기가 저장되었습니다.');
-
+            axios.post(`http://localhost:5144/api/diaries/?year=${year}&month=${month}&date=${date}`, {article: text })
+                .then(response => {
+                    alert('일기가 저장되었습니다.');
+                })
+                .catch(error => {
+                    console.error("There was an error saving the diary entry!", error);
+                    console.error("Full error response:", error.response);
+                });
         }
     }
 
 
     const handleRemove = () => {
         // 직접 localStorage에 값에서 삭제
-            localStorage.removeItem(`${year}-${month}-${date}`, text);
-            setText('')
-            alert('일기가 삭제되었습니다.');
+        if (date) {
+            axios.delete(`http://localhost:5144/api/diaries/?year=${year}&month=${month}&date=${date}`)
+                .then(response => {
+                    setText('');
+                    alert('일기가 삭제되었습니다.');
+                })
+                .catch(error => {
+                    console.error("There was an error deleting the diary entry!", error);
+                });
         }
+    }
     
-    //localstorage에 저장된 값이 있는 경우 불러오기
-    
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
 
 
     return (

@@ -83,9 +83,6 @@ app.post('/api/diaries/', async (req, res) => {
     const sql = 'INSERT INTO diaries (year, month, date, article) VALUES (?,?,?,?) ON CONFLICT(year, month, date) DO UPDATE SET article=excluded.article';
     await db.run(sql, [year,month, date, article], function(err) {
         if (err) {
-            console.error('Error inserting into database:', err.message);
-            console.error(`SQL Query: ${sql}`);
-            console.error(`Parameters: ${JSON.stringify([year, month, date, article])}`);
             return res.status(500).json({
                 status: 'Error',
                 error: err.message
