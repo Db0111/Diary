@@ -126,7 +126,6 @@ export function Calendar(props) {
         for (let i = 1; i <= new Date(props.year, props.month + 1, 0).getDate(); i++) {
             data[i] = hasDiary(props.year, props.month + 1, i);
         }
-        setDiaryData(data);
         //의존성 배열, 얘네 값이 변하면 useEffect 작동시켜줘!
     }, [props.year, props.month, props.diaryMap]);
 
@@ -139,7 +138,7 @@ export function Calendar(props) {
         if (ClickedDate !== 0) {
             navigate(`/diary/?year=${props.year}&month=${props.month + 1}&date=${ClickedDate}`)
         }
-        }
+    }
     
     
 

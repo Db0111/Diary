@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
+<<<<<<< HEAD
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
+=======
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+>>>>>>> 4074c623373b5f15a4fb0156fa76f5bbe32f719c
   },
   "author": "",
   "license": "ISC",
