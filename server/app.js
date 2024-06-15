@@ -38,16 +38,6 @@ app.use(express.static(path.join(__dirname, '../web/dist')));
 //diaries 전체 조회
 app.get('/api/diaries', async (req, res) => {
     const {year, month, date} = req.query;
-<<<<<<< HEAD
-    let sql = `SELECT * FROM diaries`;
-    if (year || month || date) {
-        sql += " WHERE "
-        year && (sql += "year=?")
-        month && (sql += " and month=?")
-        date && (sql += " and date=?")
-
-    }
-=======
 
     let sql = `SELECT * FROM diaries`;
     if (year || month || date ) {
@@ -57,7 +47,6 @@ app.get('/api/diaries', async (req, res) => {
         date && (sql += ` and date=?`)
     }
 
->>>>>>> 4074c623373b5f15a4fb0156fa76f5bbe32f719c
     db.all(sql, [year, month, date], (err, rows) => {
         if (err) {
             console.error('Error querying database:', err);
@@ -72,7 +61,6 @@ app.get('/api/diaries', async (req, res) => {
         });
     });
 });
-<<<<<<< HEAD
 // // 개별 일기 조회 (아이디에 따라 조회 -> date 값으로 식별)
 // app.get('/api/diaries/', (req, res) => {
 //     const { year, month, date } = req.query;
@@ -96,9 +84,6 @@ app.get('/api/diaries', async (req, res) => {
 //         });
 //     });
 // });
-=======
-
->>>>>>> 4074c623373b5f15a4fb0156fa76f5bbe32f719c
 //일기 저장
 app.post('/api/diaries/', async (req, res) => {
     const {year, month, date} = req.query;

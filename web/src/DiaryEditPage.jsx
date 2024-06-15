@@ -2,11 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-<<<<<<< HEAD
 export function DiaryEditPage() {
-=======
-export function DiaryEditPage(props) {
->>>>>>> 4074c623373b5f15a4fb0156fa76f5bbe32f719c
     const navigate = useNavigate();
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
@@ -26,30 +22,15 @@ export function DiaryEditPage(props) {
     useEffect(() => {
         axios.get(`http://localhost:5144/api/diaries/?year=${year}&month=${month}&date=${date}`)
             .then(response => {
-<<<<<<< HEAD
                 const savedText = response.data.data[0].article
                 setText(savedText);
-=======
-                console.log(`${year}-${month}-${date}`, "`${year}-${month}-${date}`")
-                console.log(response)
-                if (response.data.data.length === 1) {
-                    const article = response.data.data[0].article;
-                    setText(article);
-                }
-
->>>>>>> 4074c623373b5f15a4fb0156fa76f5bbe32f719c
                 setIsLoading(false);
             })
             .catch(error => {
                 console.error("There was an error fetching the diary entry!", error);
                 setIsLoading(false);
-<<<<<<< HEAD
             })        
-    }, [date, year, month])
-=======
-            })
     }, [])
->>>>>>> 4074c623373b5f15a4fb0156fa76f5bbe32f719c
    
     // handleDiaryChange 함수는 textarea의 입력값이 변경될 때마다 호출되어 해당 입력값을 text 상태로 업데이트합니다.
     const handleDiaryChange = (event) => {
@@ -123,8 +104,4 @@ export function DiaryEditPage(props) {
 
     )
 }
-<<<<<<< HEAD
 export default DiaryEditPage;
-=======
-export default DiaryEditPage
->>>>>>> 4074c623373b5f15a4fb0156fa76f5bbe32f719c
