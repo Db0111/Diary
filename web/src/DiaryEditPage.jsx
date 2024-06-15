@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export function DiaryEdit(props) {
+export function DiaryEditPage(props) {
     const navigate = useNavigate();
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
@@ -110,4 +110,4 @@ export function DiaryEdit(props) {
 
     )
 }
-export default DiaryEdit
+export default DiaryEditPage

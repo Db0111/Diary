@@ -1,7 +1,7 @@
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { CalendarPage } from './Calendar/CalendarPage.jsx';
-import { DiaryEdit } from './DiaryEditPage.jsx';
+import { DiaryEditPage } from './DiaryEditPage.jsx';
 
 export const router = (
     //React Router의 BrowserRouter 컴포넌트로 라우팅을 시작한다.
@@ -10,7 +10,7 @@ export const router = (
         <Routes>
             <Route path="/" element={<CalendarPage />} />
             {/* DiaryEdit 에서 edit 빼기 */}
-            <Route path="/diary/" element={<DiaryEdit />} />
+            <Route path="/diary/" element={<DiaryEditPage />} />
         </Routes>
     </BrowserRouter>
 );
