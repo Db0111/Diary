@@ -19,18 +19,18 @@ const Week = styled.div`
 const Weekday = styled.div`
         width: 6rem;
         height: 3rem;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     `
 const Sunday = styled.div`
         width: 6rem;
         height: 3rem;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         color: red;
     `
 const Saturday = styled.div`
         width: 6rem;
         height: 3rem;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         color: blue;
     `
 const TodayCircle = styled.div`
@@ -38,7 +38,7 @@ const TodayCircle = styled.div`
         height: 2rem;
         border-radius: 50%;
         justify-content: center;
-        border: 1px dashed blue;
+        border: 1px dashed #767f57;
         background: none;
         z-index: 300;
 `
@@ -46,7 +46,7 @@ const Diarycircle = styled.div`
         width: 0.5rem;
         height: 0.5rem;
         border-radius: 50%;
-        background-color: red;
+        background-color: #95a26a;
         z-index: 500;
         `
 export function Calendar(props) {

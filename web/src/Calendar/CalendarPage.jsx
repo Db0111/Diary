@@ -8,6 +8,9 @@ import axios from 'axios';
 const Button = styled.button`
     border: 1px solid lightgray;
     margin: 0 5px;
+    font-family: "Nanum Gothic";
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
     `
 
 
@@ -77,18 +80,18 @@ export function CalendarPage() {
 
                 <div className="button-container">
                     {/* 이전 달로 넘어가는 버튼 */}
-                    <Button onClick={handlePrevMonthClicked} data-test = "이전-달">이전 달</Button>
+                    <Button onClick={handlePrevMonthClicked} style = {{ backgroundColor: "#e4d7c7"}}>이전 달</Button>
                     {/* 오늘 날짜로 돌아오는 버튼 */}
-                    <Button onClick={handleTodayClicked} data-test='Today'>Today</Button>
+                    <Button onClick={handleTodayClicked} >Today</Button>
                     {/* 다음 달로 넘어가는 버튼 */}
-                    <Button onClick={handleNextMonthClicked} data-test="다음-달">다음 달</Button>
+                    <Button onClick={handleNextMonthClicked} style = {{ backgroundColor: "#e4d7c7"}}>다음 달</Button>
                 </div>
                 {/*<Calendar year={year} month={month + 1} className = "thisMonth"></Calendar>*/}
             </div>
             <Calendar year={year} month={month} diaryMap={getDiaryMap(diaries)}/>
             <Button onClick={openModal} 
-            style = {{margin: '1rem'}}>일기 목록</Button>
-            {/* isOpe: 모달의 표시 여부를 결정하는 상태값 */}
+            style = {{margin: '1rem', backgroundColor: "#e4d7c7"}}>일기 목록</Button>
+            {/* isOpen: 모달의 표시 여부를 결정하는 상태값 */}
             {/* closeModal은 닫는 버튼 눌렀을 때 기능 */}
             <Modal isOpen={isModalOpen} closeModal={closeModal} year={year} month={month} diaries={diaries} />
 
