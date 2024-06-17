@@ -1,9 +1,16 @@
 //열려있는 지 상태: isOpen으로 관리
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
+
+const Button = styled.button`
+    border: 1px solid lightgray;
+    margin: 0 5px;
+    font-family: "Nanum Gothic";
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+    `
 
 const ModalBox = styled.div`
-    width: 70vh;
+    width: 80vh;
     height: 50vh;
     justify-content: top;
     position: fixed;
@@ -14,20 +21,28 @@ const ModalBox = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
-    border: 1px solid black;
+    border: 1px solid lightgray;
+    font-family: "Nanum Gothic"
     `
+const DiaryList = styled.div`
+    padding: 1rem;
+    text-align: left;
+    border: 1px solid lightgray;
+    border-radius: 1rem;
+    margin: 3px;
+`
 //props 받을 때는 객체로 받아야 함
 export function Modal({isOpen, closeModal, year, month, diaries}) {
     // const [diaryData, setDiaryData] = useState({});
 
     // function HasSavedDiary (year, month, date) {
     //     return localStorage.getItem(`${year}-${month}-${date}`);
-    //
+        
     // }
     // useEffect(() => {
     //     let DiaryList = [];
     //     // useEffect 훅 내에서 직접적으로 props 사용할 수 없고, 인자로 받은 year와 month 사용해야함
-    //     // 해당 월의 말일까지 for문을 돌면서 HasSavedDiary 함수를 통해 인자를 전달하여 localStorage에서
+    //     // 해당 월의 말일까지 for문을 돌면서 HasSavedDiary 함수를 통해 인자를 전달하여 localStorage에서 
     //     // 키 값으로 찾아온 값을 SavedDiaryData에 할당
     //     for (let i = 1; i <= new Date(year, month + 1, 0).getDate(); i++) {
     //         const SavedDiaryData = HasSavedDiary(year, month + 1, i);
@@ -38,7 +53,7 @@ export function Modal({isOpen, closeModal, year, month, diaries}) {
     //     }
     //     setDiaryData(DiaryList);
     // }, [year, month]);
-    //
+    
     
 
     return (
@@ -49,7 +64,7 @@ export function Modal({isOpen, closeModal, year, month, diaries}) {
                     <div style={{
                         fontSize: '1.5rem'
                     }}>이번 달 일기 목록 📝</div>
-                    <button onClick = {closeModal}>X</button>
+                    <button onClick = {closeModal} style = {{backgroundColor : "#F1F1F1"}}>X</button>
                 </div>
                 <div
                 style = {{
@@ -57,14 +72,10 @@ export function Modal({isOpen, closeModal, year, month, diaries}) {
                 }}>
                 {/* diaryData 배열의 길이가 0 넘을 때 */}
                 {diaries.length > 0 ? (
-                    diaries.map(({ date, article }) => (
-                            <div key={`${year}-${month}-${date}`}
-                            style={{
-                                padding: '1rem',
-                                textAlign: 'left'
-                            }}>
-                                {year}년 {month +1}월 {date}일: {article}
-                            </div>
+                        diaries.map(({ date, article }) => (
+                            <DiaryList key={`${year}-${month}=${date}`}>
+                                {month +1}월 {date}일: {article}
+                            </DiaryList>
                         ))
                     ) : (
                         <div>일기가 없습니다.</div>
@@ -79,14 +90,3 @@ export function Modal({isOpen, closeModal, year, month, diaries}) {
 export default Modal;
 
 
-
-
-// <div>
-// {Object.keys(diaryList).map((day) => (
-    // diaryList[day] ? (
-        // <div key={day}>
-            // {day}일: {diaryList[day]}
-        // </div>
-    // ) : null
-// ))}
-// </div>
