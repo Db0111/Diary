@@ -1,6 +1,16 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import styled from "styled-components"
+import DiaryDeleteModal from './DiaryDeleteModal.jsx';
+
+const Button = styled.button`
+    border: 1px solid lightgray;
+    margin: 0 5px;
+    font-family: "Nanum Gothic";
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+    `
 
 export function DiaryEditPage() {
     const navigate = useNavigate();
@@ -17,6 +27,8 @@ export function DiaryEditPage() {
     // savedText 값이 존재한다면 해당 값을 초기값으로 설정하고, 그렇지 않으면 빈 문자열('')을 초기값으로 설정합니다.
     const [text, setText] = useState('');
     const [isLoading, setIsLoading] = useState(true)
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
 
 
     useEffect(() => {
@@ -62,48 +74,58 @@ export function DiaryEditPage() {
     }
 
 
-    const handleRemove = () => {
-        // 직접 localStorage에 값에서 삭제
-        if (date) {
-            axios.delete(`http://localhost:5144/api/diaries/?year=${year}&month=${month}&date=${date}`)
-                .then(response => {
-                    setText('');
-                    alert('일기가 삭제되었습니다.');
-                })
-                .catch(error => {
-                    console.error("There was an error deleting the diary entry!", error);
-                });
-        }
-    }
+    // const handleRemove = () => {
+    //     // 직접 localStorage에 값에서 삭제
+    //     if (date) {
+    //         axios.delete(`http://localhost:5144/api/diaries/?year=${year}&month=${month}&date=${date}`)
+    //             .then(response => {
+    //                 setText('');
+    //                 alert('일기가 삭제되었습니다.');
+    //             })
+    //             .catch(error => {
+    //                 console.error("There was an error deleting the diary entry!", error);
+    //             });
+    //     }
+    // }
     
     if (isLoading) {
         return <div>Loading...</div>;
     }
+
+    //모달이 열리는 
+    const openDeleteModal = () => setIsDeleteModalOpen(true);
+    const closeDeleteModal = () => setIsDeleteModalOpen(false);
 
 
     return (
     
         <div className='DiaryContainer'>
             {/* 누른 날짜 받아와서 상단에 띄우기 */}
-            <div className='DiaryTitle'>
-                {date && <div className='ClickedDate'>{`${year}년 ${month}월 ${date}일`}</div>}
-                {/* 달력으로 돌아가는 버튼*/}
-                <button onClick={ReturnCalendar}>돌아가기</button>
-            </div>
             
             <div className="DiaryInputContainer">
+                <div className='DiaryTitle'>
+                    {date && <div className='ClickedDate'>{`${year}년 ${month}월 ${date}일`}</div>}
+                    {/* 달력으로 돌아가는 버튼*/}
+                    <Button onClick={ReturnCalendar} style = {{ backgroundColor: "#e4d7c7"}}>돌아가기</Button>
+                </div>
                 {/* 저장된 일기 값이 있는 경우 내용 보여주기 */}
                 <textarea 
                     onChange={handleDiaryChange}
                     className="DiaryInput"
                     value={text}
                     placeholder="오늘 당신의 하루는 어떠셨나요?"
+                    
                 ></textarea>
                 <div className="buttonContainer">
-                    <button onClick={handleSave}>저장하기</button>
+                    <Button onClick={handleSave} style = {{ backgroundColor: "#e4d7c7", margin: "0 5px 0 0"}}>저장하기</Button>
                     {/* Todo  일기에 이미 값이 있으면 수정 및 저장하기 로 텍스트 바뀌는 것*/}
-                    <button onClick={handleRemove}>삭제하기</button>
+                    <Button onClick={openDeleteModal} style = {{ backgroundColor: "#e4d7c7"}}>삭제하기</Button>
                 </div>
+                <DiaryDeleteModal isDeleteOpen={isDeleteModalOpen} closemodal={closeDeleteModal} year={year}
+                    month={month}
+                    date={date}
+                    setText={setText}></DiaryDeleteModal>
+
             </div>
 
            
