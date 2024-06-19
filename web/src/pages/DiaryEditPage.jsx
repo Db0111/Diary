@@ -7,8 +7,8 @@ import DiaryDeleteModal from '../components/Modal/DiaryDeleteModal.jsx';
 const Button = styled.button`
     border: 1px solid lightgray;
     margin: 0 5px;
-    font-family: "Nanum Gothic";
-    font-size: 0.9rem;
+    font-family: "GangwonEdu_OTFBoldA";
+    font-size: 1rem;
     padding: 0.6rem 1rem;
     `
 

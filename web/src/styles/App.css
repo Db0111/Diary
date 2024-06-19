@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'GangwonEdu_OTFBoldA';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -22,23 +29,6 @@
   font-style: normal;
 }
 
-.ibm-plex-sans-kr-light {
-  font-family: "IBM Plex Sans KR", sans-serif;
-  font-weight: 300;
-  font-style: normal;
-}
-
-.ibm-plex-sans-kr-regular {
-  font-family: "IBM Plex Sans KR", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.ibm-plex-sans-kr-medium {
-  font-family: "IBM Plex Sans KR", sans-serif;
-  font-weight: 500;
-  font-style: normal;
-}
 
 .container{
   background-color: #F1F1F1;
@@ -55,7 +45,7 @@
 }
 .thisMonth { 
   font-size: 2rem;
-  font-family: "IBM Plex Sans KR", sans-serif;
+  font-family: "GangwonEdu_OTFBoldA", sans-serif;
   font-weight: 400;
 }
 
@@ -63,8 +53,9 @@
 .cal_table {
   display: flex;
   flex-direction: column;
+  font-size: 1.2rem;
   justify-content: space-between;
-  font-family: "Nanum Gothic", sans-serif;
+  font-family: "GangwonEdu_OTFBoldA", sans-serif;
 
 }
 
@@ -87,7 +78,7 @@
 }
 .ClickedDate {
   display: flex;
-  font-family: "Nanum Gothic";
+  font-family: "GangwonEdu_OTFBoldA";
   font-size: 1.7rem;
   padding-left: 1rem;
 }

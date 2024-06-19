@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Button = styled.button`
     border: 1px solid lightgray;
     margin: 0 5px;
-    font-family: "Nanum Gothic";
+    font-family: 'GangwonEdu_OTFBoldA';
     font-size: 0.9rem;
     padding: 0.6rem 1rem;
     `
@@ -22,13 +22,14 @@ const ModalBox = styled.div`
     transform: translate(-50%, -50%);
     padding: 20px;
     border: 1px solid lightgray;
-    font-family: "Nanum Gothic"
+    font-family: 'GangwonEdu_OTFBoldA'
     `
 const DiaryList = styled.div`
     padding: 1rem;
     text-align: left;
     border: 1px solid lightgray;
     border-radius: 1rem;
+    font-size: 1.2rem;
     margin: 3px;
 `
 //props 받을 때는 객체로 받아야 함
