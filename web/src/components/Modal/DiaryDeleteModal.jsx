@@ -4,8 +4,8 @@ import axios from 'axios';
 const Button = styled.button`
     border: 1px solid lightgray;
     margin: 0 5px;
-    font-family: "Nanum Gothic";
-    font-size: 0.9rem;
+    font-family: "GangwonEdu_OTFBoldA";
+    font-size: 1rem;
     padding: 0.6rem 1rem;
     `
 const ModalBox = styled.div`
@@ -22,8 +22,8 @@ const ModalBox = styled.div`
     transform: translate(-50%, -50%);
     padding: 20px;
     border: 1px solid lightgray;
-    font-family: "Nanum Gothic";
-    font-size: 0.9rem;
+    font-family: 'GangwonEdu_OTFBoldA';
+    font-size: 1rem;
     `
 //TODO 삭제 후에 모달 사라지지 않는 것 관리(상태 관리해줘야 함)
 
