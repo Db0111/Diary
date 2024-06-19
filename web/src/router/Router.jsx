@@ -1,7 +1,7 @@
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { CalendarPage } from './Calendar/CalendarPage.jsx';
-import { DiaryEditPage } from './DiaryEditPage.jsx';
+import { CalendarPage } from '../pages/CalendarPage.jsx';
+import { DiaryEditPage } from '../pages/DiaryEditPage.jsx';
 
 export const router = (
     //React Router의 BrowserRouter 컴포넌트로 라우팅을 시작한다.

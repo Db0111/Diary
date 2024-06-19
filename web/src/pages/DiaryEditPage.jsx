@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from "styled-components"
-import DiaryDeleteModal from './DiaryDeleteModal.jsx';
+import DiaryDeleteModal from '../components/Modal/DiaryDeleteModal.jsx';
 
 const Button = styled.button`
     border: 1px solid lightgray;

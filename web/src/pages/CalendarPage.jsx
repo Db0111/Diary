@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import {Calendar} from "./Calendar.jsx";
+import {Calendar} from "../service/Calendar.jsx";
 import styled from "styled-components"
-import Modal from '../Modal.jsx';
+import Modal from '../components/Modal/Modal.jsx';
 import axios from 'axios';
 
 

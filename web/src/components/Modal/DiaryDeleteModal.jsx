@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import axios from 'axios';
-import { useState } from 'react';
 
 const Button = styled.button`
     border: 1px solid lightgray;
