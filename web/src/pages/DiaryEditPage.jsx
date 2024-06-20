@@ -32,25 +32,27 @@ export function DiaryEditPage() {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:5144/api/diaries/?year=${year}&month=${month}&date=${date}`)
-            .then(response => {
+        const fetchDiary = async() => {
+            try{
+                const response = await axios.get(`http://localhost:5144/api/diaries/?year=${year}&month=${month}&date=${date}`)
                 const HasSavedDiary = response.data.data;
                 if (HasSavedDiary && HasSavedDiary.length > 0) {
                     const savedText = HasSavedDiary[0].article;
                     setText(savedText ? savedText : '');
                     setIsLoading(false);                   
-
+    
                 } else {
                     setText('');
-                    setIsLoading(false);                   
 
                 }
-            })
-
-            .catch (error => {
+            } catch (error) {
                 console.error("There was an error fetching the diary entry!", error);
+            } finally {
                 setIsLoading(false);
-            })        
+            }
+
+            }
+            fetchDiary()       
     }, [])
    
     // handleDiaryChange 함수는 textarea의 입력값이 변경될 때마다 호출되어 해당 입력값을 text 상태로 업데이트합니다.
@@ -59,19 +61,19 @@ export function DiaryEditPage() {
     }
     // 함수로 호출하였을 때 useEffect가 호출되지 않는 문제가 있음 -> 수정 완료
     // 저장 로직 따로 구현 (아래에서 단순히 함수로 useLocalStorage 호출 불가))
-    const handleSave = () => {
+    const handleSave = async() => {
         // api릁 통해 일기 저장
         if (date && text) {
-            axios.post(`http://localhost:5144/api/diaries/?year=${year}&month=${month}&date=${date}`, {article: text})
-                .then(response => {
+            try {
+                    await axios.post(`http://localhost:5144/api/diaries/?year=${year}&month=${month}&date=${date}`, {article: text})
                     alert('일기가 저장되었습니다.');
-                })
-                .catch(error => {
+                } catch(error) {
                     console.error("There was an error saving the diary entry!", error);
                     console.error("Full error response:", error.response);
-                });
+                }
+            };
         }
-    }
+    
 
 
     // const handleRemove = () => {
@@ -109,6 +111,7 @@ export function DiaryEditPage() {
                     <Button onClick={ReturnCalendar} style = {{ backgroundColor: "#e4d7c7"}}>돌아가기</Button>
                 </div>
                 {/* 저장된 일기 값이 있는 경우 내용 보여주기 */}
+                
                 <textarea 
                     onChange={handleDiaryChange}
                     className="DiaryInput"

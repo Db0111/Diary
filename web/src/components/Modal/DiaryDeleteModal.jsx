@@ -28,18 +28,17 @@ const ModalBox = styled.div`
 //TODO 삭제 후에 모달 사라지지 않는 것 관리(상태 관리해줘야 함)
 
 export function DiaryDeleteModal({isDeleteOpen, closemodal,year,month,date, setText}) {
-    const handleRemove = () => {
+    const handleRemove = async () => {
         // 직접 localStorage에 값에서 삭제
         if (date) {
-            axios.delete(`http://localhost:5144/api/diaries/?year=${year}&month=${month}&date=${date}`)
-                .then(response => {
-                    setText('');
-                    alert('일기가 삭제되었습니다.');
-                    closemodal()
-                })
-                .catch(error => {
-                    console.error("There was an error deleting the diary entry!", error);
-                });
+            try {
+                await axios.delete(`http://localhost:5144/api/diaries/?year=${year}&month=${month}&date=${date}`)
+                setText('');
+                alert('일기가 삭제되었습니다.');
+                closemodal()
+            }
+            catch (error) {
+                console.error("There was an error deleting the diary entry!", error);                
         }
     }
 
@@ -60,5 +59,6 @@ export function DiaryDeleteModal({isDeleteOpen, closemodal,year,month,date, setT
 
         </ModalBox>
     )
+    }
 }
 export default DiaryDeleteModal

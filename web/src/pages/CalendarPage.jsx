@@ -24,14 +24,18 @@ export function CalendarPage() {
     const [diaries, setDiaries] = useState([]);
     // api 호출 
     useEffect(() => {
-        axios.get(`http://localhost:5144/api/diaries/?year=${year}&month=${month + 1}`)
-                .then(response => {
-                    setDiaries(response.data.data);
+        const fetchMonthDiaries= async() => {
+            try {
+                const response = await axios.get(`http://localhost:5144/api/diaries/?year=${year}&month=${month + 1}`)
+                setDiaries(response.data.data);
 
-                })
-                .catch(error => {
-                    console.error("There was an error fetching the diary entry!", error);
-                })
+            } catch (error) {
+                console.error("There was an error fetching the diary entry!", error);
+            }
+
+        }
+                
+        fetchMonthDiaries();
     }, [year, month]);
 
     const handlePrevMonthClicked = () => {
