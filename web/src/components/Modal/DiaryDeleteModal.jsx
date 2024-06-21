@@ -29,7 +29,6 @@ const ModalBox = styled.div`
 
 export function DiaryDeleteModal({isDeleteOpen, closemodal,year,month,date, setText}) {
     const handleRemove = async () => {
-        // 직접 localStorage에 값에서 삭제
         if (date) {
             try {
                 await axios.delete(`http://localhost:5144/api/diaries/?year=${year}&month=${month}&date=${date}`)
