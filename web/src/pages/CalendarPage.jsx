@@ -12,6 +12,8 @@ const Button = styled.button`
   padding: 0.6rem 1rem;
 `;
 
+const apiURL = import.meta.env.VITE_NGROK_URL;
+
 // calendar 앱 함수 만들어 html 태그들 넣기
 export function CalendarPage() {
   // props 에 대한 가공
@@ -25,9 +27,7 @@ export function CalendarPage() {
     const fetchMonthDiaries = async () => {
       try {
         const response = await axios.get(
-          `https://my-first-diary.vercel.app/api/diaries/?year=${year}&month=${
-            month + 1
-          }`
+          `${apiURL}/api/diaries/?year=${year}&month=${month + 1}`
         );
         setDiaries(response.data.data);
       } catch (error) {
