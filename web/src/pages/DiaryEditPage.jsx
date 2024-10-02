@@ -12,6 +12,8 @@ const Button = styled.button`
   padding: 0.6rem 1rem;
 `;
 
+const apiURL = import.meta.env.VITE_NGROK_URL;
+
 export function DiaryEditPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -35,7 +37,7 @@ export function DiaryEditPage() {
     const fetchDiary = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5144/api/diaries/?year=${year}&month=${month}&date=${date}`
+          `${apiURL}/api/diaries/?year=${year}&month=${month}&date=${date}`
         );
         const HasSavedDiary = response.data.data;
         if (HasSavedDiary && HasSavedDiary.length > 0) {
@@ -65,7 +67,7 @@ export function DiaryEditPage() {
     if (date && text) {
       try {
         await axios.post(
-          `https://my-first-diary.vercel.app/api/diaries/?year=${year}&month=${month}&date=${date}`,
+          `${apiURL}/api/diaries/?year=${year}&month=${month}&date=${date}`,
           { article: text }
         );
         alert("일기가 저장되었습니다.");

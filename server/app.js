@@ -9,8 +9,8 @@ const PORT = 5144;
 
 app.use(
   cors({
-    origin: "*", // 모든 출처 허용
-    methods: "GET, POST, PUT, DELETE",
+    origin: "http://localhost:5144",
+    credentials: true,
   })
 );
 //

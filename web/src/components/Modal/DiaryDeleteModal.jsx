@@ -26,6 +26,7 @@ const ModalBox = styled.div`
   font-size: 1rem;
 `;
 //TODO 삭제 후에 모달 사라지지 않는 것 관리(상태 관리해줘야 함)
+const apiURL = import.meta.env.VITE_NGROK_URL;
 
 export function DiaryDeleteModal({
   isDeleteOpen,
@@ -39,7 +40,7 @@ export function DiaryDeleteModal({
     if (date) {
       try {
         await axios.delete(
-          `https://my-first-diary.vercel.app/api/diaries/?year=${year}&month=${month}&date=${date}`
+          `${apiURL}/api/diaries/?year=${year}&month=${month}&date=${date}`
         );
         setText("");
         alert("일기가 삭제되었습니다.");
